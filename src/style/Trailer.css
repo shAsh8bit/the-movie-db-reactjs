@@ -1,0 +1,46 @@
+.modal_info {
+  background-color: black;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  max-height: 40px;
+}
+.modal_info h5 {
+  flex: 1;
+  font-size: large;
+  padding-left: 20px;
+}
+.modal_info i {
+  padding-right: 20px;
+  font-size: large;
+}
+.modal_info i:hover {
+  cursor: pointer;
+}
+.modal_container {
+  top: 6%;
+  left:5vw;
+  min-width: 90vw;
+  position: fixed;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: black;
+  box-shadow: rgb(0, 0, 0) 0px 22px 70px 4px;
+  z-index: 1000;
+}
+.modal_container iframe {
+  border: none;
+  width: 100%;
+  height: 80vh;
+}
+@media (max-width: 568px) {
+  .modal_container {
+    top: 20%;
+    left: 0.5vw;
+    min-width: 99vw;
+  }
+  .modal_container iframe {
+    height: 40vh;
+    
+  }
+}

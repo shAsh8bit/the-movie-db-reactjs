@@ -1,0 +1,104 @@
+.searchcontent {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie__searchcards {
+  position: relative;
+background-color: rgba(243, 239, 239, 0.644);
+min-width: 150px;
+max-width: 150px;
+margin: 2px;
+border-radius: 6px;
+padding: 5px;
+transition: all 0.2s ease-in-out;
+}
+.movie__searchcards img {
+    height: 190px;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+.movie__searchcards:hover {
+    transform: scale(1.06);
+    cursor: pointer;
+  }
+
+.movie__searchCardDetails{
+display: flex;
+  }
+.movie__searchinfo small{
+   flex: 1;
+}
+.searchcontainer {
+    margin: 0 0 0 60px ;
+  }
+.button__container button{
+  margin: 10px 10px 10px 2px ;
+  padding: 8px;
+  color: #fff;
+  background-color: rgba(248, 64, 64, 0);
+  font-size: 0.9rem;
+  font-family: "Rubik", sans-serif;
+  border: 2px solid ;
+  border-radius: 1.3rem;
+  transition:0.4s;
+}
+.button__container button.selected {
+  background-color: rgba(250, 167, 250, 0.74);
+}
+.button__container button:hover{
+background-color: rgba(250, 167, 250, 0.74);
+cursor: pointer;
+} 
+.button__container button span{
+  background-color: #fff;
+  color: black;
+  margin-left: 2px;
+  padding:0.2em;
+  border-radius: 6px;
+}
+.button__bottomContainer{
+  display:flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.button__bottomContainer button{
+  padding: 10px;
+  
+  border: none;
+  background-color: rgb(241, 182, 114);
+  color: black;
+  border-radius: 6px;
+  transition:0.4s;
+}
+.button__bottomContainer button.disable{
+  background-color: rgb(252, 233, 212);
+}
+.button__bottomContainer button.disable:hover{
+  background-color: rgb(252, 233, 212);
+  cursor:not-allowed;
+}
+.button__bottomContainer button:hover{
+  background-color: rgb(247, 210, 168);
+  cursor: pointer;
+}
+ 
+  @media (max-width: 500px) {
+    .movie__searchcards {
+      width: 120px;
+     
+    }
+    .movie__searchcards:hover {
+      transform: scale(1);
+      
+    }
+    .movie__searchcards img {
+      height: 190px;
+    }
+    .searchcontainer {
+      margin: 0 15px ;
+    }
+    .button__container button{
+
+    }
+  }

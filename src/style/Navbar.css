@@ -1,0 +1,85 @@
+.navbar ul {
+  display: flex;
+  background: linear-gradient(
+    90deg,
+    rgb(107, 151, 247) 0%,
+    rgb(56, 44, 216) 100%
+  );
+  position: fixed;
+  right: 10%;
+  top: -4px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 100;
+}
+.menu {
+  position: fixed;
+  right: 10%;
+  top: 15px;
+  z-index: 100;
+}
+.menu .menu__icon i {
+  padding: 8px 15px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgb(107, 151, 247) 0%,
+    rgb(56, 44, 216) 100%
+  );
+
+  border-radius: 50%;
+}
+
+.menu ul {
+  position: absolute;
+  min-width: 100px;
+  background: linear-gradient(
+    90deg,
+    rgb(107, 151, 247) 0%,
+    rgb(56, 44, 216) 100%
+  );
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: none;
+}
+.menu ul.display {
+  display: block;
+  transform: translateY(-10%) translateX(-70%);
+}
+.menu__icon.display i {
+  border: 1px solid #fff;
+}
+.menu ul li {
+  list-style: none;
+}
+.navbar ul li {
+  list-style: none;
+  margin: 10px;
+}
+a {
+  text-decoration: none;
+  color: white;
+  font-family: "Rubik", sans-serif;
+  transition: 0.4s;
+}
+.nav li:first-child a:hover {
+  color: rgb(6, 192, 248);
+}
+.nav li:nth-child(3) a:hover {
+  color: rgb(54, 248, 6);
+}
+.nav li:last-child a:hover {
+  color: rgb(248, 6, 6);
+}
+
+@media (max-width: 500px) {
+  .navbar ul {
+    height: 20px;
+    right: 10px;
+  }
+  .navbar ul li {
+    margin: 0 5px;
+    background: none;
+    border: none;
+  }
+}
