@@ -240,7 +240,14 @@ const MovieDetails = () => {
                 {credits.actors?.map((actor) => (
                   <div className={`movie__cards`} key={actor.id}>
                     <Link to={`/person/${actor.id}`}>
-                      <img src={`${image_api}${actor.profile_path}`} alt="" />
+                      <img
+                        src={
+                          actor.profile_path !== null
+                            ? `${image_api}${actor.profile_path}`
+                            : `../nouser.jpg`
+                        }
+                        alt=""
+                      />
                       <div className="movie__info">
                         <span>{actor.name}</span>
                         <small>{actor.character}</small>

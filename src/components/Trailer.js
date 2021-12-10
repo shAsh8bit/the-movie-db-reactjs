@@ -22,7 +22,7 @@ const Trailer = ({ setTrailerActive, value, id }) => {
             className="fas fa-times"
           ></i>
         </div>
-        <iframe title="" src={`https://www.youtube.com/embed/${key}`}></iframe>
+        <iframe title="unique" src={`https://www.youtube.com/embed/${key}`}></iframe>
       </div>
     </div>
   );

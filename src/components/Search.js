@@ -1,5 +1,5 @@
-import React, { useEffect, useState , useContext} from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import WatchlistContext from "../context/watchlist/WatchlistContext";
 import "../style/Search.css";
 
@@ -19,12 +19,14 @@ const Search = ({ searchterm }) => {
 
   //watchList context api
   const context = useContext(WatchlistContext);
-  const {   selected,
+  const {
+    selected,
     addToWatchlist,
     addToFavourite,
     removeFromWatchlist,
-    removeFromFavourites,} = context;
- 
+    removeFromFavourites,
+  } = context;
+
   const fetchSearch = async () => {
     const response = await fetch(SEARCH_API + searchterm);
     const data = await response.json();
@@ -52,11 +54,9 @@ const Search = ({ searchterm }) => {
     // eslint-disable-next-line
   }, [searchterm, filterInitial, page]);
 
-
   return (
     <div className="searchcontainer">
       <div className="button__container">
-        
         {buttonItems.map((item) => (
           <>
             <button
@@ -73,30 +73,40 @@ const Search = ({ searchterm }) => {
         ))}
       </div>
       <div className="searchcontent">
-      {totalresults===0 && <h2>🤔 Nothing to show</h2>}
+        {totalresults === 0 && <h2>🤔 Nothing to show</h2>}
         {searchItem.map((item) => (
           <>
-            <div 
-              className="movie__searchcards"
-              key={item.id}
-            >
-              <span className="rating" style={{color:item.vote_average > 6 || "null" ? "yellow" : "red"}}>{item.vote_average?`(${item.vote_average})` : "--"}</span>
-              <Link to={`/${filterInitial}/${item.id}`} >
-              <img
-                src={`${image_api}${
-                  item.poster_path || item.backdrop_path || item.profile_path
-                }`}
+            <div className="movie__searchcards" key={item.id}>
+            {filterInitial!=="person" && <span
+                className="rating"
+                style={{
+                  color: item.vote_average > 6 || "null" ? "yellow" : "red",
+                }}
+              >
+                {item.vote_average ? `(${item.vote_average})` : "--"}
+              </span>}
+              <Link to={`/${filterInitial}/${item.id}`}>
+               {filterInitial!=="person" ? (<img
+                  src={
+                    item.poster_path===null && item.backdrop_path===null? `./movie.jpg`:`${image_api}${item.poster_path || item.backdrop_path}`
+                  }
+                  alt=""
+                />) 
+                :(<img
+                src={
+                  item.profile_path===null    ? `./nouser.jpg`:`${image_api}${item.profile_path}`
+                }
                 alt=""
-              />
-              
-              </Link> 
-         {filterInitial!=="person" && <div className={`icon_container `}>
+              />)}
+              </Link>
+              {filterInitial !== "person" && (
+                <div className={`icon_container `}>
                   <i
                     className={`fas fa-eye ${selected(item.id, "watch")}`}
                     onClick={(e) => {
                       e.target.classList.contains("fa-eye") &&
                         addToWatchlist(item);
-                      e.target.classList.contains( "selected") &&
+                      e.target.classList.contains("selected") &&
                         removeFromWatchlist(item);
                       e.target.classList.toggle("selected");
                     }}
@@ -108,44 +118,49 @@ const Search = ({ searchterm }) => {
                         addToFavourite(item);
                       e.target.classList.contains("selected") &&
                         removeFromFavourites(item);
-                        e.target.classList.toggle("selected");
+                      e.target.classList.toggle("selected");
                     }}
                   ></i>
-                </div>}  
-            
-              <div className="movie__searchinfo" style={{color:"black"}}>
+                </div>
+              )}
+
+              <div className="movie__searchinfo" style={{ color: "black" }}>
                 <span>
                   {item.original_name || item.original_title || item.name}
                 </span>
+              </div>
             </div>
-              </div> 
           </>
         ))}
-      </div>  
-      
-      {totalresults!==0 &&
-      <div className="button__bottomContainer">
-    
-        <button disabled={page <= 1 } className={page <= 1 && "disable"}
-          onClick={() => {
-            let pagevalue = page;
-            window.scrollTo(0,250);
-            setPage((pagevalue -= 1));
-          }}
-        >
-          Previous
-        </button>
-         <button disabled={page === totalPages} className={page === totalPages && "disable"}
-          onClick={() => {
-            let pagevalue = page;
-           
-            window.scrollTo(0,250);
-            setPage((pagevalue += 1));
-          }}
-        >
-          Next
-        </button>
-      </div>}
+      </div>
+
+      {totalresults !== 0 && (
+        <div className="button__bottomContainer">
+          <button
+            disabled={page <= 1}
+            className={page <= 1 && "disable"}
+            onClick={() => {
+              let pagevalue = page;
+              window.scrollTo(0, 250);
+              setPage((pagevalue -= 1));
+            }}
+          >
+            Previous
+          </button>
+          <button
+            disabled={page === totalPages}
+            className={page === totalPages && "disable"}
+            onClick={() => {
+              let pagevalue = page;
+
+              window.scrollTo(0, 250);
+              setPage((pagevalue += 1));
+            }}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };
