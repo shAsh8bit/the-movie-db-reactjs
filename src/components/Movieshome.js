@@ -64,8 +64,18 @@ const Movieshome = ({ status, url, backdrop }) => {
               <div
                 className={`movie__cards  ${backdrop && "backdrop__cards"}`}
                 key={movie.id}
-              ><span className="rating" style={{color:movie.vote_average > 6 || "null"? "yellow" : "red"}}>{movie.vote_average?`(${movie.vote_average})` : "--"}</span>
-                <Link to={`/${movie.original_name?"tv":"movie"}/${movie.id}`}>
+              >
+                <span
+                  className="rating"
+                  style={{
+                    color: movie.vote_average > 6 || "null" ? "yellow" : "red",
+                  }}
+                >
+                  {movie.vote_average ? `(${movie.vote_average})` : "--"}
+                </span>
+                <Link
+                  to={`/${movie.original_name ? "tv" : "movie"}/${movie.id}`}
+                >
                   <img
                     src={`${image_api}${
                       backdrop ? movie.backdrop_path : movie.poster_path
@@ -74,13 +84,12 @@ const Movieshome = ({ status, url, backdrop }) => {
                   />
                 </Link>
                 <div className={`icon_container `}>
-                  
                   <i
                     className={`fas fa-eye ${selected(movie.id, "watch")}`}
                     onClick={(e) => {
                       e.target.classList.contains("fa-eye") &&
                         addToWatchlist(movie);
-                      e.target.classList.contains( "selected") &&
+                      e.target.classList.contains("selected") &&
                         removeFromWatchlist(movie);
                       e.target.classList.toggle("selected");
                     }}
@@ -92,15 +101,18 @@ const Movieshome = ({ status, url, backdrop }) => {
                         addToFavourite(movie);
                       e.target.classList.contains("selected") &&
                         removeFromFavourites(movie);
-                        e.target.classList.toggle("selected");
-                       
+                      e.target.classList.toggle("selected");
                     }}
                   ></i>
                 </div>
                 <div className="movie__info">
-                  <span>{movie.title.slice(0,20)}{movie.title.length>20&& "..."}</span> 
-                  <small>{movie.release_date}</small>
-                 
+                  <span>
+                    {movie.title.slice(0, 20)}
+                    {movie.title.length > 20 && "..."}
+                  </span>
+                  <small>
+                    {new Date(movie.release_date).toGMTString().slice(5, 17)}
+                  </small>
                 </div>
               </div>
             </>
